@@ -1,0 +1,56 @@
+Aim: To configure advanced email server (SMTP (Simple Mail Transfer Protocol) and POP (Post Office Protocol))
+
+Tools Used: Cisco Packet Tracer
+
+Related Theory: The general architecture of an e-mail system includes three main components: user agent, message transfer agent and message access agent. User agents helps compose, read, reply to and forward messages. The actual mail transfer is done through a message transfer agent (MTA) in which SMTP is the formal protocol that defines the MTA client and server in the internet. SMTP is used two times, between the sender and the sender’s mail server and between the two mail servers. From the recipient’s e-mail server to the recipient’s device, the message access agent comes into picture. Protocols that act as message access agents are POP and IMAP (Internet Mail Access Protocol). To deliver a mail through the internet, the addressing system used if of the form: local part@domain name
+
+Laboratory Exercise:
+
+
+Task: Create a public network as shown below. The topology comprises of a DHCP server, DNS
+server and 2 email servers (whose details are stored in the DNS server i.e. the domain name and
+the corresponding IP address). Let one email server act as the GMAIL server and the other a
+HOTMAIL server. Configure the PC’s and the laptops in the network to send an e-mail from
+one device to another
+
+Steps to follow:
+1. Create the topology as shown. For connecting the two switches use ‘copper cross-over’ and
+for the rest use ‘copper straight-through’
+2. Configuring the DHCP server
+2.1 Change the display name to ‘DHCP server’
+2.2 Set the gateway (under the display name only) as 172.16.0.1
+2.3 Go to FastEthernet and set the IP address to 172.16.0.10. Set the Subnet mask (press tab
+for automatically setting it)
+2.4 Go to HTTP and disable the HTTP and HTTPS service
+2.5 Go to DHCP and set the default gateway, dns server and start IP address as 172.16.0.1,
+172.16.0.11 and 172.16.0.100 resp. Decide on the max. no. of users.
+2.6 Go to DNS and disable the DNS service
+3. Configuring the DNS server
+3.1 Change the display name to ‘DNS server’
+3.2 Set the gateway (under the display name only) as 172.16.0.1
+3.3 Go to FastEthernet and set the IP address to 172.16.0.11. Set the Subnet mask
+3.4 Go to HTTP and disable the HTTP and HTTPS service
+3.5 Go to DHCP and disable the DHCP service
+4. Go to the email server 1
+4.1 Change the display name to hotmail server
+4.2 Assign IP address dynamically (Go to Desktop, IP configuration, click on DHCP)
+5. Go to the email server2
+5.1 Change the display name to gmail server
+5.2 Assign IP address dynamically (Go to Desktop, IP configuration, click on DHCP)
+6. Go back to the dns server
+6.1 Go to Config, select DNS. Create a list of Name: hotmail.com v/s Its corresponding IP
+address (which you have assigned dynamically). Select ADD
+6.2 Also add Name: gmail.com v/s its corresponding IP address (which you have assigned
+dynamically). Select ADD
+7. Assign IP addresses dynamically to all PC’s
+8. Configuration of email server 1 & 2
+8.1 Select email server 1. Go to Config, select EMAIL. In this window add the domain name
+as hotmail.com. Select Set. Type the first username of your choice with your chosen
+password. Select +.(You can add some more usernames (depending on how many PC’s
+are there in the n/w))
+8.2 Repeat step 7.1 for email server 2 (here the domain name will be gmail.com). Steps 7.1
+and 7.2 complete the configuration of the email servers.
+9. Configuring the PC’s now (i.e. setting up an account in either of the mail servers)
+
+Output:
+https://drive.google.com/file/d/1RWiW-RHJtKYSMjabkUgznwJ7z7lrs4cZ/view?usp=sharing
