@@ -1,0 +1,128 @@
+Aim: To configure a primary DNS server/client
+
+Tools Used: Cisco Packet Tracer
+
+Related Theory: DNS is a system that enables the mapping of a name to an address or vice-versa within a single host file. However, in today’s scenario it is impossible to have a single host that relates every address to every name and vice-versa. Therefore, the need to divide the huge information into smaller parts and storing each part on a different computer. For this, the host that needs mapping can contact the closest computer holding the needed information which forms the crux of DNS. For the purpose of accessing the internet, two connections need to be made in all- the first for mapping the name to an IP address; the second for transferring files (for example). 
+
+Laboratory Exercise:
+
+Task 1: Create a public network as shown below. The topology comprises of a DHCP server, DNS server and 4 servers (whose details are stored in the DNS server i.e. the domain name and the corresponding IP address). Let one server result in the opening of a college website, the second server in the opening of an online shopping site, the third server in the opening of a restaurant menu card and the fourth server in the opening of a fast food outlet. The final outcome of this task is to open the website of your choice by only entering the domain name in the URL of any PC or (laptop). 
+
+Steps to follow:
+1. Create the topology as shown. For connecting the two switches use ‘copper cross-over’ and
+for the rest use ‘copper straight-through’
+2. Configuring the DHCP server
+2.1 Change the display name to ‘DHCP server’
+2.2 Set the gateway (under the display name only) as 172.16.0.1
+2.3 Go to FastEthernet and set the IP address to 172.16.0.10. Set the Subnet mask (press tab
+for automatically setting it)
+2.4 Go to HTTP and disable the HTTP and HTTPS service
+2.5 Go to DHCP and set the default gateway, dns server and start IP address as 172.16.0.1,
+172.16.0.11 and 172.16.0.100 resp. Decide on the max. no. of users.
+2.6 Go to DNS and disable the DNS service
+3. Configuring the DNS server
+3.1 Change the display name to ‘DNS server’
+3.2 Set the gateway (under the display name only) as 172.16.0.1
+3.3 Go to FastEthernet and set the IP address to 172.16.0.11. Set the Subnet mask
+3.4 Go to HTTP and disable the HTTP and HTTPS service
+3.5 Go to DHCP and disable the DHCP service
+3.6 Go to DNS,
+3.6.1 Enter the domain name (corr. to RS1) and IP address as 172.16.0.19. Click ‘add’
+3.6.2 Enter the domain name (corr. to RS2) and IP address as 172.16.0.29. Click ‘add’
+3.6.3 Enter the domain name (corr. to RS3) and IP address as 172.16.0.39. Click ‘add’
+3.6.4 Enter the domain name (corr. to RS4) and IP address as 172.16.0.49. Click ‘add
+4. Configure RS1
+4.1 Change the display name
+4.2 Set the gateway (under the display name only) as 172.16.0.1
+4.3 Go to FastEthernet and set the IP address to 172.16.0.19. Set the Subnet mask.
+4.4 Go to DHCP and disable the DHCP service
+4.5 Go to DNS and disable the DNS service
+4.6 Go to HTTP and change the HTML page as per requirement
+5. Configure RS2
+5.1 Change the display name
+5.2 Set the gateway (under the display name only) as 172.16.0.1
+5.3 Go to FastEthernet and set the IP address to 172.16.0.29. Set the Subnet mask.
+5.4 Go to DHCP and disable the DHCP service
+5.5 Go to DNS and disable the DNS service
+5.6 Go to HTTP and change the HTML page as per requirement
+6. Configure RS3
+6.1 Change the display name
+6.2 Set the gateway (under the display name only) as 172.16.0.1
+6.3 Go to FastEthernet and set the IP address to 172.16.0.39. Set the Subnet mask.
+6.4 Go to DHCP and disable the DHCP service
+6.5 Go to DNS and disable the DNS service
+6.6 Go to HTTP and change the HTML page as per requirement
+7. Configure RS4
+7.1 Change the display name
+7.2 Set the gateway (under the display name only) as 172.16.0.1
+7.3 Go to FastEthernet and set the IP address to 172.16.0.49. Set the Subnet mask.
+7.4 Go to DHCP and disable the DHCP service
+7.5 Go to DNS and disable the DNS service
+7.6 Go to HTTP and change the HTML page as per requirement
+8. Cofigure PC1
+8.1 Change the display name to ‘Dynamic 1’
+8.2 Set the Gateway/DNS (under the display name only) to DHCP
+8.3 Go to FastEthernet and set the IP configuration to DHCP
+9. Cofigure PC2
+9.1 Change the display name to ‘Dynamic 2’
+9.2 Set the Gateway/DNS (under the display name only) to DHCP
+9.3 Go to FastEthernet and set the IP configuration to DHCP
+10. Cofigure PC3
+10.1 Change the display name to ‘Static’
+10.2 Set the Gateway/DNS (under the display name only) to Static, set the gateway and DNS
+server address to 172.16.0.1 and 172.16.0.11
+10.3 Go to FastEthernet and set the IP configuration to Static set the IP address to
+172.16.0.90. Also set the subnet mask
+11. Configure the laptop
+11.1 Connect laptop to access point. See if the IP address after connecting the laptop to the
+access point has got set dynamically. If not do the needful
+12. Finally go to the URL of any one of the PC’s (and the laptop also), enter the domain name
+(not the IP address) and on pressing enter, the respective page that you created should pop up.
+
+Task 2:
+Create a topology as shown below. The topology comprises of two different networks with the DNS server and 2 other servers present in one network and the wired and wireless devices accessing these servers present in another network. Assign the IP address to the devices dynamically by enabling DHCP in the router itself and the IP address of the DNS server is to also be assigned dynamically. The final outcome of this task is to open the website of your choice by only entering the domain name in the URL of any PC or (laptop). 
+
+Steps:
+1.	Assign IP address, subnet mask, default gateway (corresponding to one of the IP addresses of the router that matches with the network address of the dns server) to the dns server statically.
+2.	Assign IP address, subnet mask, default gateway (corresponding to one of the IP addresses of the router that matches with the network address of the dns server) to the hospital server statically.
+3.	Assign IP address, subnet mask, default gateway (corresponding to one of the IP addresses of the router that matches with the network address of the dns server) to the college server statically.
+4.	Configure the access point. Make it secure (Set the WEP key). Configure the laptop to get connected to the access point.
+5.	We have to now assign the PCs & laptops their respective IP address dynamically. For doing this, start writing the commands in the CLI of the router 
+6.	Now assign the IP address dynamically to the PCs & laptop. Check if the dns server address has also got assigned dynamically with the correct values i.e. 200.168.1.2
+7.	Go into the dns server and map the IP addresses of the two servers to a respective domain name of your choice.
+8.	Go to the respective servers and change their HTML page.
+9.	Open these HTML pages from any PC (or laptop) by simply entering the domain name in the PC’s URL.
+
+Router CLI:
+
+Continue with configuration dialog? [yes/no]: no
+Press RETURN to get started!
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int fa0/0
+Router(config-if)#ip address 201.168.1.1 255.255.255.0
+Router(config-if)#no shut
+Router(config-if)#
+%LINK-5-CHANGED: Interface FastEthernet0/0, changed state to up
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+Router(config-if)#ip dhcp pool MINDS
+Router(dhcp-config)#network 201.168.1.0 255.255.255.0
+Router(dhcp-config)#default-router 201.168.1.1
+Router(dhcp-config)#dns-server 200.168.1.2
+Router(dhcp-config)#exit
+Router(config)#int fa0/1
+Router(config-if)#ip address 200.168.1.1 255.255.255.0
+Router(config-if)#no shut
+Router(config-if)#
+%LINK-5-CHANGED: Interface FastEthernet0/1, changed state to up
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+Router(config-if)#ip dhcp pool EYE
+Router(dhcp-config)#network 200.168.1.0 255.255.255.0
+Router(dhcp-config)#default-router 200.168.1.1
+Router(dhcp-config)#dns-server 200.168.1.2
+Router(dhcp-config)#exit
+Router(config)#
+
+Output:
+https://drive.google.com/file/d/1P6h8DFrMPHOhG1AIsYmxMIRFaWkC8Fpl/view?usp=sharing
