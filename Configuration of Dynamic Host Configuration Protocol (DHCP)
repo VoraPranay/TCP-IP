@@ -1,0 +1,61 @@
+Aim: To configure DHCP on a network comprising of wired and/or wireless devices
+
+Tools Used: Cisco Packet Tracer
+
+Related Theory: A DHCP server has a database that statically binds the physical addresses to IP addresses; in this sense, it is backward compatible with Bootstrap Protocol (BOOTP). However, it also has a second database with a pool of available (unused) IP addresses and assigns an IP address for a negotiable period of time. The dynamic aspect of DHCP is needed when a host moves from network to network or is connected and disconnected from a network.
+
+Task 1: Create a topology as shown below. Enable DHCP on the server and let the PC’s be assigned IP addresses through DHCP. Access the server from any one of the PC’s by typing in the web browser of the PC, the IP address of the server. 
+
+Steps to follow for task 1:
+1.	Create the topology as shown in experimental write-up. For connecting each PC and the server to the switch go to ‘Connections’ select ‘Copper-straight through’.
+2.	Click on the server. Go to ‘Config’ and change the display name to DHCP Server. Select option Desktop and go to IP Configuration and enter the IP address as 192.168.1.2. On pressing Tab key, automatically the Subnet mask will become 255.255.255.0. Go back to option ‘Services’, choose DHCP, Enter IP for Default Gateway as 192.168.1.1. Also enter the start IP address as 192.168.1.10 and the maximum no. of users (of your choice). DHCP service should be in ‘On’ mode. Select option ‘Save’.
+3.	To assign IP address dynamically to PCs select any PC, select ‘Desktop’, select ‘IP configuration’ and then select ‘DHCP’ option. Automatically an IP address will be assigned to that particular PC.
+
+Task2: Create a topology as shown below. Let the topology comprise of wired and wireless devices (laptops) being assigned IP addresses through DHCP enabled on the server.  Check if the wireless devices have got connected to the intranet by pinging any one device of the intranet from the wireless device. Also try to access the server from the wireless device by typing in the web browser of the laptop, the IP address of the server. Write an algorithm for the same.
+
+Steps to follow for task 2:
+1.	Create the topology as shown in experimental write-up. For connecting each PC and the server to the switch go to ‘Connections’ select ‘Copper-straight through’.
+2.	To select access point, go to ‘Wireless devices’ option and select the first component ‘AccessPoint-PT’.
+3.	Click on the server. Go to ‘Config’ and change the display name to DHCP Server. Select option Desktop and go to IP Configuration and enter the IP address as 192.168.1.2. On pressing Tab key, automatically the Subnet mask will become 255.255.255.0. Go back to option ‘Services’, choose DHCP, Enter IP for Default Gateway as 192.168.1.1. Also enter the start IP address as 192.168.1.10 and the maximum no. of users (of your choice). DHCP service should be in ‘On’ mode. Select option ‘Save’.
+4.	Assign IP addresses to each PC dynamically (refer step 3 of task 1).
+5.	Now to allow the laptops to access the intranet devices (including the server) perform the following tasks
+a.	Open the access point. Go to ‘Config’, select ‘Port 1’. Select ‘WEP’ and enter 10 hex digit long WEP key (e.g. 12345ABCDE). Enter the ‘SSID’ name as ‘CISCO’ (or any name of your choice).
+b.	Open any one laptop. Switch off the device. Remove the wired NIC. In its place put the wireless NIC i.e. Linksys WPC300N. Switch on the device. (Raise a doubt if you haven’t understood).
+c.	Go to desktop. Select ‘PC Wireless’. Select option ‘Connect’. The access point details with the name ‘CISCO’ will be displayed. Select option ‘Connect’ at the bottom. Enter the WEP Key 1 the same as the key of the access point i.e. 1234567891. Again select ‘Connect’. 
+d.	The laptop is now wirelessly connected to the intranet through the AP. To connect the other laptops wirelessly to the intranet follow Step 3.
+6.	Observe that an IP address has already got allotted dynamically to the laptop
+
+Task 3:Create a topology as shown below. Let the topology comprise of two different networks having wired devices connected to one another using a router with DHCP enabled inside the router itself. Thereafter check if the wired devices have got assigned IP address dynamically or not. 
+
+Steps to follow for task 3:
+1.	Create the topology as shown. For connecting each PC to the switch, go to Connections select Copper-straight through. Use the same connection to connect the switches to the router.
+2.	Open the router. Go to option ‘CLI’ and type the following commands in IOS command line interface to configure router wrt interface fa0/0:
+a.	Continue with configuration dialog? [yes/no]: no
+b.	Press RETURN to get started!
+c.	Router>en
+d.	Router#conf t
+e.	Router(config)#interface fa0/0
+f.	Router(config-if)#ip address 192.168.1.1 __255.255.255.0
+g.	
+h.	Router(config-if)#no shut
+i.	Router(config-if)#
+j.	Router(config-if)#ip dhcp pool _Minds______
+k.	Router(dhcp-config)#network 192.168.1.0 ___255.255.25.0
+l.	Router(dhcp-config)#default-router 192.168.1.1
+m.	Router(dhcp-config)#exit
+3.	Assign IP address dynamically to PC in network_1.
+4.	Open the router. Go to option ‘CLI’ and type the following commands in IOS command line interface to configure router wrt interface fa0/1: 
+a.	Router(dhcp-config)#exit
+b.	Router(config)#interface fa0/1
+c.	Router(config-if)#ip address 190.168.1.1 _255.255.25.0
+d.	Router(config-if)#no shut
+e.	Router(config-if)#
+f.	Router(config-if)#ip dhcp pool ___Eye_____
+g.	Router(dhcp-config)#network 190.168.1.0 255.255.25.0
+h.	Router(dhcp-config)#default-router 190.168.1.1
+i.	Router(dhcp-config)#exit
+5.	Assign IP address dynamically to PC in network_2.
+6.	You can check whether the PCs of both the networks have connected successfully or not by selecting the PC, Selecting Desktop, selecting Command Prompt and giving the command ping  (IP address of the router interfaces).
+
+Output:
+https://drive.google.com/file/d/1CUZPMxVFpf8N3YKgaDXU9RzvWe-yVpiX/view?usp=sharing
